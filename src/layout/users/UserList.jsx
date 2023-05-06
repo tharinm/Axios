@@ -2,9 +2,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { postOwner } from "../../App";
+import { useContext } from "react";
 
 export default function UserList({ val }) {
-  console.log(val);
+  //   console.log(val);
+
+    const { id, setId } = useContext(postOwner);
+    //console.log(id)
+    
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
@@ -22,7 +28,9 @@ export default function UserList({ val }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained">Show Post</Button>
+                  <Button variant="contained" onClick={() => {
+                       setId(val.id);
+          }}>Show Post</Button>
         </CardActions>
       </Card>
     </div>

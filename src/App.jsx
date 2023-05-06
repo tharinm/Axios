@@ -1,30 +1,36 @@
 import Post from "./layout/Post";
 import Users from "./layout/Users";
 import { Stack } from "@mui/material";
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+export const postOwner = createContext({})
+export const userID=createContext([])
 
 export default function App() {
   const [user, setUser] = useState([]);
+  const [id ,setId]=useState('')
 
   // console.log(user);
 
   return (
-    <Stack
-      justifyContent="center"
-      alignItems="center"
-      marginTop="20px"
-      width="1920px"
-    >
+    <postOwner.Provider value={{ id, setId ,user}}>
       <Stack
-        direction="row"
-        sx={{}}
-        spacing={5}
-        // alignItems="center"
-        // justifyContent="center"
+        justifyContent="center"
+        alignItems="center"
+        marginTop="20px"
+        width="1920px"
       >
-        <Users user={user} setUser={setUser} />
-        <Post />
+        <Stack
+          direction="row"
+          sx={{}}
+          spacing={5}
+          // alignItems="center"
+          // justifyContent="center"
+        >
+          <Users user={user} setUser={setUser} />
+          <Post  />
+        </Stack>
       </Stack>
-    </Stack>
+    </postOwner.Provider>
   );
 }
